@@ -79,7 +79,7 @@ const ContactForm = () => {
               transition={{ delay: 0.3 }}
               className="mt-3 text-gray-600 dark:text-gray-400 max-w-lg mx-auto"
             >
-              Have questions about selling your unused software licenses? We're here to help!
+              {`Have questions about selling your unused software licenses? We're here to help!`}
             </motion.p>
             <motion.div 
               initial={{ scaleX: 0 }}
@@ -97,7 +97,7 @@ const ContactForm = () => {
             >
               <CheckCircle className="w-16 h-16 text-green-500 dark:text-green-400 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-green-800 dark:text-green-300 mb-2">Message Sent Successfully!</h3>
-              <p className="text-green-700 dark:text-green-400">Thank you for contacting us. We'll get back to you shortly.</p>
+              <p className="text-green-700 dark:text-green-400">{`Thank you for contacting us. We'll get back to you shortly.`}</p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">

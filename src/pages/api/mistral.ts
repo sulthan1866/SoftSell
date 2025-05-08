@@ -40,7 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     return res.status(200).json(data);
-  } catch (error) {
+  } catch  {
     return res.status(500).json({ error: "Something went wrong while calling the AI service." });
   }
 }

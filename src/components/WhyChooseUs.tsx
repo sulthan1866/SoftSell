@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Gauge, Wallet, ShieldCheck, Headphones, CheckCircle, Star } from "lucide-react";
+import { Gauge, Wallet, ShieldCheck, Headphones, CheckCircle } from "lucide-react";
 import Testimonials from "./Testimonials";
 
 const WhyChooseUs = () => {
@@ -70,7 +70,7 @@ const WhyChooseUs = () => {
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose SoftSell?</h2>
           <p className="text-gray-600 dark:text-gray-300 text-lg">
-            We've helped companies recover over $10M from unused software licenses with our secure and streamlined process.
+           {` We've helped companies recover over $10M from unused software licenses with our secure and streamlined process.`}
           </p>
         </div>
 

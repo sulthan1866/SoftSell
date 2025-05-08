@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Star, Quote, Moon, Sun } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 
 const Testimonials = () => {
   const testimonials = [
@@ -154,7 +154,7 @@ const Testimonials = () => {
                       </div>
                       
                       <blockquote className="text-base sm:text-lg md:text-xl font-medium text-gray-700 dark:text-gray-300 mb-4 italic">
-                        "{testimonials[currentIndex].message}"
+                       {`"${testimonials[currentIndex].message}"`}
                       </blockquote>
                       
                       <div className="mt-3 sm:mt-4">

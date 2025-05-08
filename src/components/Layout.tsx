@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Head from "next/head";
 import { ThemeProvider } from "next-themes";
 import { useRouter } from 'next/router';
-import { Menu, X, ChevronUp } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
 // import ThemeToggle from "./ThemeToggle";
 
 interface LayoutProps {
@@ -54,7 +55,7 @@ const Layout = ({
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
-                <a 
+                <Link 
                   key={link.href}
                   href={link.href}
                   className={`font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors ${
@@ -64,7 +65,7 @@ const Layout = ({
                   }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <div className="ml-4">
                 {/* <ThemeToggle /> */}
@@ -93,7 +94,7 @@ const Layout = ({
             <div className="md:hidden bg-white dark:bg-gray-800 px-4 py-2 shadow-lg">
               <nav className="flex flex-col space-y-4 py-4">
                 {navLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.href}
                     href={link.href}
                     className={`px-2 py-1 font-medium rounded hover:bg-gray-100 dark:hover:bg-gray-700 ${
@@ -104,7 +105,7 @@ const Layout = ({
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
               </nav>
             </div>
@@ -130,24 +131,24 @@ const Layout = ({
               <div>
                 <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="/marketplace" className="hover:text-blue-600 dark:hover:text-blue-400">Browse Marketplace</a></li>
-                  <li><a href="/sell" className="hover:text-blue-600 dark:hover:text-blue-400">Sell Your Licenses</a></li>
+                  <li><Link href="/marketplace" className="hover:text-blue-600 dark:hover:text-blue-400">Browse Marketplace</Link></li>
+                  <li><Link href="/sell" className="hover:text-blue-600 dark:hover:text-blue-400">Sell Your Licenses</Link></li>
                 </ul>
               </div>
               
               <div>
                 <h3 className="text-lg font-semibold mb-4">Support</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="/help" className="hover:text-blue-600 dark:hover:text-blue-400">Help Center</a></li>
+                  <li><Link href="/help" className="hover:text-blue-600 dark:hover:text-blue-400">Help Center</Link></li>
                 </ul>
               </div>
               
               <div>
                 <h3 className="text-lg font-semibold mb-4">Legal</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="/terms" className="hover:text-blue-600 dark:hover:text-blue-400">Terms of Service</a></li>
-                  <li><a href="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400">Privacy Policy</a></li>
-                  <li><a href="/cookies" className="hover:text-blue-600 dark:hover:text-blue-400">Cookie Policy</a></li>
+                  <li><Link href="/terms" className="hover:text-blue-600 dark:hover:text-blue-400">Terms of Service</Link></li>
+                  <li><Link href="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400">Privacy Policy</Link></li>
+                  <li><Link href="/cookies" className="hover:text-blue-600 dark:hover:text-blue-400">Cookie Policy</Link></li>
                 </ul>
               </div>
             </div>
