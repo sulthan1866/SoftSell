@@ -1,6 +1,12 @@
 "use client";
 import { useState, useRef, useEffect, ReactNode } from "react";
-import { Loader2, SendHorizonal, X, MessageCircle, MinusCircle } from "lucide-react";
+import {
+  Loader2,
+  SendHorizonal,
+  X,
+  MessageCircle,
+  MinusCircle,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Message {
@@ -42,9 +48,15 @@ export default function ChatWidget() {
     setMessages((prev) => [...prev, { sender: "user", text: userMessage }]);
     setInput("");
     setIsLoading(true);
-    setMessages((prev) => [...prev, { sender: "bot", text: <Loader2 className="animate-spin" /> }]);
+    setMessages((prev) => [
+      ...prev,
+      { sender: "bot", text: <Loader2 className="animate-spin" /> },
+    ]);
     const botResponse = await sendMessageToAI(userMessage);
-    setMessages((prev) => [...prev.slice(0, -1), { sender: "bot", text: botResponse }]);
+    setMessages((prev) => [
+      ...prev.slice(0, -1),
+      { sender: "bot", text: botResponse },
+    ]);
     setIsLoading(false);
   };
 
@@ -81,14 +93,14 @@ export default function ChatWidget() {
                 SoftSell Assistant
               </div>
               <div className="flex gap-2">
-                <button 
+                <button
                   onClick={resetChat}
                   className="p-1 hover:bg-blue-600 rounded-full transition-colors"
                   aria-label="Reset conversation"
                 >
                   <MinusCircle size={18} />
                 </button>
-                <button 
+                <button
                   onClick={toggleChat}
                   className="p-1 bg-red-500 hover:bg-red-600 rounded-full transition-colors"
                   aria-label="Close chat"
@@ -97,8 +109,8 @@ export default function ChatWidget() {
                 </button>
               </div>
             </div>
-            
-            <motion.div 
+
+            <motion.div
               className="h-64 p-3 overflow-y-auto text-sm space-y-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -109,7 +121,7 @@ export default function ChatWidget() {
                   <p>How can I help you with your software licenses today?</p>
                 </div>
               )}
-              
+
               {messages.map((msg, i) => (
                 <motion.div
                   key={i}
@@ -122,16 +134,16 @@ export default function ChatWidget() {
                       : "mr-auto bg-gray-200 dark:bg-gray-700 dark:text-white"
                   }`}
                 >
-                 {typeof msg.text === "string" ? (
-  <div dangerouslySetInnerHTML={{ __html: msg.text }} />
-) : (
-  msg.text
-)}
+                  {typeof msg.text === "string" ? (
+                    <div dangerouslySetInnerHTML={{ __html: msg.text }} />
+                  ) : (
+                    msg.text
+                  )}
                 </motion.div>
               ))}
               <div ref={messagesEndRef} />
             </motion.div>
-            
+
             <div className="flex p-3 bg-gray-50 dark:bg-gray-800">
               <input
                 type="text"
@@ -159,9 +171,9 @@ export default function ChatWidget() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className={`p-4 rounded-full shadow-lg flex items-center justify-center transition-colors bg-blue-600 hover:bg-blue-700 text-white`}
-        aria-label={ "Open chat"}
+        aria-label={"Open chat"}
       >
-        { <MessageCircle size={24} />}
+        {<MessageCircle size={24} />}
       </motion.button>
     </div>
   );

@@ -1,20 +1,28 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle, AlertCircle, Send, User, Mail, Briefcase, FileText, MessageSquare } from "lucide-react";
+import {
+  CheckCircle,
+  AlertCircle,
+  Send,
+  User,
+  Mail,
+  Briefcase,
+  FileText,
+  MessageSquare,
+} from "lucide-react";
 
 const ContactForm = () => {
-  const [form, setForm] = useState({ 
-    name: "", 
-    email: "", 
-    company: "", 
-    license: "", 
-    message: "" 
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    company: "",
+    license: "",
+    message: "",
   });
-  
+
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
 
   const validate = () => {
     const errs: { [key: string]: string } = {};
@@ -31,19 +39,19 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
-    
+
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
     } else {
       setIsSubmitting(true);
       setErrors({});
-      
+
       //API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       setIsSubmitting(false);
       setIsSubmitted(true);
-      
+
       setTimeout(() => {
         setForm({ name: "", email: "", company: "", license: "", message: "" });
         setIsSubmitted(false);
@@ -51,10 +59,13 @@ const ContactForm = () => {
     }
   };
 
-  const inputClasses = "w-full p-3 rounded-lg border transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100";
-  const labelClasses = "block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300";
-  const errorClasses = "flex items-center text-red-500 dark:text-red-400 text-sm mt-1";
-  
+  const inputClasses =
+    "w-full p-3 rounded-lg border transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100";
+  const labelClasses =
+    "block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300";
+  const errorClasses =
+    "flex items-center text-red-500 dark:text-red-400 text-sm mt-1";
+
   return (
     <div>
       <section className="py-12 sm:py-20 px-4 max-w-3xl mx-auto">
@@ -65,7 +76,7 @@ const ContactForm = () => {
           className="bg-white dark:bg-gray-900 rounded-xl shadow-xl p-6 sm:p-10"
         >
           <div className="text-center mb-8 sm:mb-12">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -81,7 +92,7 @@ const ContactForm = () => {
             >
               {`Have questions about selling your unused software licenses? We're here to help!`}
             </motion.p>
-            <motion.div 
+            <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.4, duration: 0.7 }}
@@ -96,7 +107,9 @@ const ContactForm = () => {
               className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg text-center"
             >
               <CheckCircle className="w-16 h-16 text-green-500 dark:text-green-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-green-800 dark:text-green-300 mb-2">Message Sent Successfully!</h3>
+              <h3 className="text-xl font-semibold text-green-800 dark:text-green-300 mb-2">
+                Message Sent Successfully!
+              </h3>
               <p className="text-green-700 dark:text-green-400">{`Thank you for contacting us. We'll get back to you shortly.`}</p>
             </motion.div>
           ) : (
@@ -113,10 +126,14 @@ const ContactForm = () => {
                     <input
                       id="name"
                       type="text"
-                      className={`${inputClasses} pl-10 ${errors.name ? 'border-red-500 dark:border-red-500' : ''}`}
+                      className={`${inputClasses} pl-10 ${
+                        errors.name ? "border-red-500 dark:border-red-500" : ""
+                      }`}
                       placeholder="Your name"
                       value={form.name}
-                      onChange={e => setForm({ ...form, name: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, name: e.target.value })
+                      }
                     />
                   </div>
                   {errors.name && (
@@ -138,10 +155,14 @@ const ContactForm = () => {
                     <input
                       id="email"
                       type="email"
-                      className={`${inputClasses} pl-10 ${errors.email ? 'border-red-500 dark:border-red-500' : ''}`}
+                      className={`${inputClasses} pl-10 ${
+                        errors.email ? "border-red-500 dark:border-red-500" : ""
+                      }`}
                       placeholder="your.email@example.com"
                       value={form.email}
-                      onChange={e => setForm({ ...form, email: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, email: e.target.value })
+                      }
                     />
                   </div>
                   {errors.email && (
@@ -168,7 +189,9 @@ const ContactForm = () => {
                       className={`${inputClasses} pl-10`}
                       placeholder="Your company name"
                       value={form.company}
-                      onChange={e => setForm({ ...form, company: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, company: e.target.value })
+                      }
                     />
                   </div>
                 </div>
@@ -183,9 +206,15 @@ const ContactForm = () => {
                     </div>
                     <select
                       id="license"
-                      className={`${inputClasses} pl-10 appearance-none ${errors.license ? 'border-red-500 dark:border-red-500' : ''}`}
+                      className={`${inputClasses} pl-10 appearance-none ${
+                        errors.license
+                          ? "border-red-500 dark:border-red-500"
+                          : ""
+                      }`}
                       value={form.license}
-                      onChange={e => setForm({ ...form, license: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, license: e.target.value })
+                      }
                     >
                       <option value="">Select License Type</option>
                       <option value="Office">Microsoft Office</option>
@@ -194,7 +223,11 @@ const ContactForm = () => {
                       <option value="Other">Other</option>
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-300">
-                      <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <svg
+                        className="fill-current h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
                         <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                       </svg>
                     </div>
@@ -222,7 +255,9 @@ const ContactForm = () => {
                     rows={4}
                     placeholder="How can we help you?"
                     value={form.message}
-                    onChange={e => setForm({ ...form, message: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, message: e.target.value })
+                    }
                   />
                 </div>
               </div>
@@ -242,9 +277,25 @@ const ContactForm = () => {
                 >
                   {isSubmitting ? (
                     <>
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                       Sending...
                     </>
